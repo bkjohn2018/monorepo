@@ -45,69 +45,67 @@ This repo ships **both** variants. Pick one for your model:
 ## ERD (Mermaid)
 ```mermaid
 erDiagram
-  D_COA ||--o{ F_Asset_Transaction : has
-  D_Asset ||--o{ F_Asset_Transaction : has
-  D_Book ||--o{ F_Asset_Transaction : has
-  D_Time ||--o{ F_Asset_Transaction : has
-
-  D_Asset ||--o{ F_Depreciation_Period : has
-  D_Book  ||--o{ F_Depreciation_Period : has
-  D_Time  ||--o{ F_Depreciation_Period : has
-
-  D_Asset ||--o{ F_Asset_Balance_Period : has
-  D_Book  ||--o{ F_Asset_Balance_Period : has
-  D_Time  ||--o{ F_Asset_Balance_Period : has
-
-  F_Asset_Transaction {
-    int TRANSACTION_HEADER_ID
-    string TRANSACTION_TYPE_CODE
-    date TRX_DATE
-    int ASSET_ID
-    string ASSET_NUMBER
-    string BOOK_TYPE_CODE
-    int CODE_COMBINATION_ID
-    decimal COST_DELTA
-    decimal DEPRN_RESERVE_DELTA
-    decimal PROCEEDS
-    decimal GAIN_LOSS
-    decimal UNITS_DELTA
-  }
-
-  F_Depreciation_Period {
-    int ASSET_ID
-    string BOOK_TYPE_CODE
-    int PERIOD_COUNTER
-    string PERIOD_NAME
-    decimal DEPRN_AMOUNT
-    decimal DEPRN_BONUS
-    decimal DEPRN_CATCHUP
-    decimal DEPRN_YTD
-    decimal DEPRN_ITD
-  }
-
-  F_Asset_Balance_Period {
-    int ASSET_ID
-    string BOOK_TYPE_CODE
-    int PERIOD_COUNTER
-    string PERIOD_NAME
-    decimal COST_BEG
-    decimal ADDITIONS
-    decimal ADJUSTMENTS
-    decimal TRANSFERS_NET
-    decimal RETIREMENTS_COST
-    decimal DEPRN_PERIOD
-    decimal DEPRN_YTD
-    decimal DEPRN_ITD
-    decimal NBV_END
-    decimal UNITS
-  }
-
-  D_COA {
-    int CODE_COMBINATION_ID
-  }
+    D_COA ||--o{ F_Asset_Transaction : "has"
+    D_Asset ||--o{ F_Asset_Transaction : "has"
+    D_Book ||--o{ F_Asset_Transaction : "has"
+    D_Time ||--o{ F_Asset_Transaction : "has"
+    
+    D_Asset ||--o{ F_Depreciation_Period : "has"
+    D_Book ||--o{ F_Depreciation_Period : "has"
+    D_Time ||--o{ F_Depreciation_Period : "has"
+    
+    D_Asset ||--o{ F_Asset_Balance_Period : "has"
+    D_Book ||--o{ F_Asset_Balance_Period : "has"
+    D_Time ||--o{ F_Asset_Balance_Period : "has"
+    
+    F_Asset_Transaction {
+        int TRANSACTION_HEADER_ID
+        string TRANSACTION_TYPE_CODE
+        date TRX_DATE
+        int ASSET_ID
+        string ASSET_NUMBER
+        string BOOK_TYPE_CODE
+        int CODE_COMBINATION_ID
+        decimal COST_DELTA
+        decimal DEPRN_RESERVE_DELTA
+        decimal PROCEEDS
+        decimal GAIN_LOSS
+        decimal UNITS_DELTA
+    }
+    
+    F_Depreciation_Period {
+        int ASSET_ID
+        string BOOK_TYPE_CODE
+        int PERIOD_COUNTER
+        string PERIOD_NAME
+        decimal DEPRN_AMOUNT
+        decimal DEPRN_BONUS
+        decimal DEPRN_CATCHUP
+        decimal DEPRN_YTD
+        decimal DEPRN_ITD
+    }
+    
+    F_Asset_Balance_Period {
+        int ASSET_ID
+        string BOOK_TYPE_CODE
+        int PERIOD_COUNTER
+        string PERIOD_NAME
+        decimal COST_BEG
+        decimal ADDITIONS
+        decimal ADJUSTMENTS
+        decimal TRANSFERS_NET
+        decimal RETIREMENTS_COST
+        decimal DEPRN_PERIOD
+        decimal DEPRN_YTD
+        decimal DEPRN_ITD
+        decimal NBV_END
+        decimal UNITS
+    }
+    
+    D_COA {
+        int CODE_COMBINATION_ID
+    }
 ```
-
-%% Note: Additional COA attributes/hierarchies live in your governed model
 
 ## Bus Matrix (Kimball)
 This repo follows a **bus architecture** with conformed dimensions across facts.  
