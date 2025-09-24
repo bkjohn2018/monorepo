@@ -59,54 +59,55 @@ erDiagram
   D_Time  ||--o{ F_Asset_Balance_Period : has
 
   F_Asset_Transaction {
-    NUMBER TRANSACTION_HEADER_ID PK
-    VARCHAR TRANSACTION_TYPE_CODE
-    DATE TRX_DATE
-    NUMBER ASSET_ID FK
-    VARCHAR ASSET_NUMBER
-    VARCHAR BOOK_TYPE_CODE FK
-    NUMBER CODE_COMBINATION_ID FK
-    NUMBER COST_DELTA
-    NUMBER DEPRN_RESERVE_DELTA
-    NUMBER PROCEEDS
-    NUMBER GAIN_LOSS
-    NUMBER UNITS_DELTA
+    int TRANSACTION_HEADER_ID
+    string TRANSACTION_TYPE_CODE
+    date TRX_DATE
+    int ASSET_ID
+    string ASSET_NUMBER
+    string BOOK_TYPE_CODE
+    int CODE_COMBINATION_ID
+    decimal COST_DELTA
+    decimal DEPRN_RESERVE_DELTA
+    decimal PROCEEDS
+    decimal GAIN_LOSS
+    decimal UNITS_DELTA
   }
 
   F_Depreciation_Period {
-    NUMBER ASSET_ID FK
-    VARCHAR BOOK_TYPE_CODE FK
-    NUMBER PERIOD_COUNTER
-    VARCHAR PERIOD_NAME
-    NUMBER DEPRN_AMOUNT
-    NUMBER DEPRN_BONUS
-    NUMBER DEPRN_CATCHUP
-    NUMBER DEPRN_YTD
-    NUMBER DEPRN_ITD
+    int ASSET_ID
+    string BOOK_TYPE_CODE
+    int PERIOD_COUNTER
+    string PERIOD_NAME
+    decimal DEPRN_AMOUNT
+    decimal DEPRN_BONUS
+    decimal DEPRN_CATCHUP
+    decimal DEPRN_YTD
+    decimal DEPRN_ITD
   }
 
   F_Asset_Balance_Period {
-    NUMBER ASSET_ID FK
-    VARCHAR BOOK_TYPE_CODE FK
-    NUMBER PERIOD_COUNTER
-    VARCHAR PERIOD_NAME
-    NUMBER COST_BEG
-    NUMBER ADDITIONS
-    NUMBER ADJUSTMENTS
-    NUMBER TRANSFERS_NET
-    NUMBER RETIREMENTS_COST
-    NUMBER DEPRN_PERIOD
-    NUMBER DEPRN_YTD
-    NUMBER DEPRN_ITD
-    NUMBER NBV_END
-    NUMBER UNITS
+    int ASSET_ID
+    string BOOK_TYPE_CODE
+    int PERIOD_COUNTER
+    string PERIOD_NAME
+    decimal COST_BEG
+    decimal ADDITIONS
+    decimal ADJUSTMENTS
+    decimal TRANSFERS_NET
+    decimal RETIREMENTS_COST
+    decimal DEPRN_PERIOD
+    decimal DEPRN_YTD
+    decimal DEPRN_ITD
+    decimal NBV_END
+    decimal UNITS
   }
 
   D_COA {
-    NUMBER CODE_COMBINATION_ID PK
-    -- Additional COA attributes/hierarchies live in your governed model
+    int CODE_COMBINATION_ID
   }
 ```
+
+%% Note: Additional COA attributes/hierarchies live in your governed model
 
 ## Bus Matrix (Kimball)
 This repo follows a **bus architecture** with conformed dimensions across facts.  
